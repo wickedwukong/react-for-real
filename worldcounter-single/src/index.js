@@ -20,6 +20,30 @@ function ProgressBar({completion}) {
   );
 }
 
+const SUCCESS = 'SUCCESS'; 
+const FAILURE = 'FAILURE'; 
+const WAITING = 'WAITING'; 
+const IDLE = 'IDLE';
+
+function SaveButton({onClick}) {
+  return (
+    <button className="pv2 ph3" onClick={onClick}>
+      Save
+    </button>
+  );
+}
+
+function makeFakeRequest() {
+  return new Promise((resolve, reject) => {
+     setTimeout(() => {
+       if (Math.random() > 0.5) {
+         resolve('success');
+       } else {
+        reject("failure");
+       }
+     }, 100)
+  });
+}
 
 function Editor({ text, onTextChange}) { 
   function handleChange(event) { 
@@ -37,6 +61,43 @@ function Editor({ text, onTextChange}) {
 function countWords(text) {
   return text ? text.match(/\w+/g).length : 0;
 }
+
+class SaveManager extends React.Component { 
+  constructor() {
+    super();
+    this.state = {saveStatus: IDLE};
+    this.save = this.save.bind(this);
+  }
+  save(event) {
+    event.preventDefault();
+    this.setState(() => {status: WAITING});
+    this.props
+    .saveFunction(this.props.data).then(
+       success => this.setState(() => ({ saveStatus: SUCCESS })),
+       failure => this.setState(() => ({ saveStatus: FAILURE }))
+    );
+  }
+
+  render() { 
+    return (
+          <div className="flex flex-column mv2"> 
+          <SaveButton onClick={this.save} /> 
+          <AlertBox status={this.state.saveStatus} />
+          </div> );
+    }
+}
+
+function AlertBox({ status }) { 
+  if (status === FAILURE) {
+  return <div className="mv2">Save failed</div>; } 
+  else if (status === SUCCESS) {
+       return <div className="mv2">Save successful</div>; 
+} else if (status === WAITING) {
+  return <div className="mv2">Saving...</div>; } 
+  else {
+  return null; 
+}
+  }
 
 class WordCounter extends React.Component {
   constructor() {
@@ -63,6 +124,7 @@ class WordCounter extends React.Component {
         <div className="flex mt3">
           <Counter count={wordCount} />
           <ProgressBar completion={progress}/>
+          <SaveManager data={this.state} saveFunction={makeFakeRequest} />
         </div>
         </form>
       );
