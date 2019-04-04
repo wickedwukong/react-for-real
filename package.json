@@ -1,5 +1,12 @@
 {
   "devDependencies": {
-    "eslint-config-airbnb": "^17.1.0"
-  }
+    "eslint-config-airbnb": "^17.1.0",
+    "webpack": "^4.29.6"
+  },
+  "name": "react-for-real",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:wickedwukong/react-for-real.git",
+  "author": "Xuemin Guan <Xuemin Guan>",
+  "license": "MIT"
 }
