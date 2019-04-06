@@ -1,17 +1,20 @@
 {
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
     "babel-preset-react-app": "^7.0.2",
     "cross-env": "^5.2.0",
     "eslint-config-airbnb": "^17.1.0",
+    "jest": "^24.7.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack -p",
-    "start": "cross-env NODE_ENV=development webpack-dev-server -d"
+    "start": "cross-env NODE_ENV=development webpack-dev-server -d",
+    "test": "jest --watch"
   },
   "name": "wordcounter",
   "version": "1.0.0",
