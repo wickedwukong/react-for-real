@@ -3,30 +3,8 @@ import ProgressBar from './ProgressBar'
 import Counter from './Counter'
 import SaveManager from './SaveManager'
 import Editor from './Editor'
-
-
-
-
-function makeFakeRequest() {
-  return new Promise((resolve, reject) => {
-     setTimeout(() => {
-       if (Math.random() > 0.5) {
-         resolve('success');
-       } else {
-        reject("failure");
-       }
-     }, 100)
-  });
-}
-
-
-
-function countWords(text) {
-  return text ? text.match(/\w+/g).length : 0;
-}
-
-
-
+import countWords from './countWords'
+import makeFakeRequest from './makeFakeRequest'
 
 
 class WordCounter extends React.Component {
