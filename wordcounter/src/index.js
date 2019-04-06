@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 function Counter({count}) {
   return (
     <p className="mb2">
