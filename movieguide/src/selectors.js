@@ -6,11 +6,6 @@
  * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/lfreact for more book information.
 ***/
-import { createStore } from 'redux';
-import { devToolsEnhancer } from 'redux-devtools-extension';
-import rootReducer from './reducers';
-
-export default createStore(
-  rootReducer,
-  devToolsEnhancer()
-);
+function byDate(movie, date) {
+  return movie.date === date;
+}
